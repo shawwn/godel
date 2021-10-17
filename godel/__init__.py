@@ -4,7 +4,6 @@ import functools
 import operator
 import collections
 from functools import partial
-from __main__ import apply
 
 def aseq(x):
   return isinstance(x, (tuple, list))
@@ -86,7 +85,7 @@ close_bracket = ")"
 token_to_num = {
     open_bracket: 1,
     close_bracket: 3,
-    0: 5,
+    '0': 5,
     "next": 7,
     "+": 9,
     "*": 11,
@@ -121,6 +120,9 @@ def parse_tokens (*args):
 
 def bigpow(a, b):
   return a ** b
+
+def apply(f, args, **kws):
+  return f(*args, **kws)
 
 def pm_lisp_to_godel_num(form):
   r = parse_tokens(form)
